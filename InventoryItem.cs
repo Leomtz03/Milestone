@@ -8,31 +8,39 @@ namespace Milestone1
 {
     class InventoryItem
     {
-        // Constructor
+ 
         public InventoryItem()
         {
-            int inventoryId = 0;
-            string medication = "";
-            string deliveryForm = "";
-            int quantity = 0;
-            double unitPrice = 0.0;
-        }
+            // Reference the property. Similar to Java.
+            this.InventoryId = 0;
+            this.Medication = "";
+            this.DeliveryForm = "";
+            this.Quantity = 0;
+            this.UnitPrice = 0.0;
+
+    }
 
         // Get and Set inventoryId property. Similar to Java Getters and Setters.
-        public int inventoryId { get; set;  }
+        public int InventoryId { get; set;  }
 
         // Get and Set medicaiton property. Similar to Java Getters and Setters.
-        public string medication { get; set; }
+        public string Medication { get; set; }
         
         // Get and Set deliveryForm property. Similar to Java Getters and Setters.
-        public string deliveryForm { get; set; }
+        public string DeliveryForm { get; set; }
 
         // Get and Set quantity property. Similar to Java Getters and Setters.
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
         // Get and Set unitPrice property. Similar to Java Getters and Setters.
-        public double unitPrice { get; set; }
+        public double UnitPrice { get; set; }
 
+        // Method to override how it is displayed.
+        public override string ToString()
+        {
+            return "ID:"+ this.InventoryId.ToString() + " Name: " + this.Medication + " " + "Delivery form:" +
+                        this.DeliveryForm + " Quantity " + this.Quantity.ToString() + " Unit Price: " + this.UnitPrice.ToString("c");
+        }
 
         // Different setup.
         /*private int _inventoryId;
@@ -71,5 +79,6 @@ namespace Milestone1
 
         // Get and Set unitPrice property. Similar to Java Getters and Setters.
         public double unitPrice { get { return _unitPrice; } set { _unitPrice = value; } } */
+
     }
 }
