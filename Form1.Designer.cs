@@ -47,6 +47,8 @@ namespace Milestone1
             this.panel1 = new System.Windows.Forms.Panel();
             this.titleLbl = new System.Windows.Forms.Label();
             this.updateBtn = new System.Windows.Forms.Button();
+            this.removeBtn = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +77,7 @@ namespace Milestone1
             // submitBtn
             // 
             this.submitBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.submitBtn.Location = new System.Drawing.Point(341, 178);
+            this.submitBtn.Location = new System.Drawing.Point(390, 178);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(75, 23);
             this.submitBtn.TabIndex = 1;
@@ -87,7 +89,7 @@ namespace Milestone1
             // 
             this.resetBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.resetBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.resetBtn.Location = new System.Drawing.Point(237, 178);
+            this.resetBtn.Location = new System.Drawing.Point(309, 178);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(75, 23);
             this.resetBtn.TabIndex = 18;
@@ -175,7 +177,7 @@ namespace Milestone1
             this.inventoryListBox.FormattingEnabled = true;
             this.inventoryListBox.Location = new System.Drawing.Point(12, 226);
             this.inventoryListBox.Name = "inventoryListBox";
-            this.inventoryListBox.Size = new System.Drawing.Size(609, 264);
+            this.inventoryListBox.Size = new System.Drawing.Size(609, 212);
             this.inventoryListBox.TabIndex = 38;
             this.inventoryListBox.SelectedIndexChanged += new System.EventHandler(this.inventoryListBox_SelectedIndexChanged);
             // 
@@ -214,13 +216,34 @@ namespace Milestone1
             // updateBtn
             // 
             this.updateBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.updateBtn.Location = new System.Drawing.Point(139, 178);
+            this.updateBtn.Location = new System.Drawing.Point(228, 178);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 23);
             this.updateBtn.TabIndex = 41;
             this.updateBtn.Text = "Update";
             this.updateBtn.UseVisualStyleBackColor = true;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
+            // 
+            // removeBtn
+            // 
+            this.removeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.removeBtn.Location = new System.Drawing.Point(147, 178);
+            this.removeBtn.Name = "removeBtn";
+            this.removeBtn.Size = new System.Drawing.Size(75, 23);
+            this.removeBtn.TabIndex = 43;
+            this.removeBtn.Text = "Remove";
+            this.removeBtn.UseVisualStyleBackColor = true;
+            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(66, 178);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.TabIndex = 46;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // Form1
             // 
@@ -231,6 +254,8 @@ namespace Milestone1
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.resetBtn;
             this.ClientSize = new System.Drawing.Size(634, 541);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.countLbl);
@@ -277,6 +302,8 @@ namespace Milestone1
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label titleLbl;
         private System.Windows.Forms.Button updateBtn;
+        private System.Windows.Forms.Button removeBtn;
+        private System.Windows.Forms.Button searchBtn;
     }
 }
 
