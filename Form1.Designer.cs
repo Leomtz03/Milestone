@@ -50,6 +50,7 @@ namespace Milestone1
             this.removeBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
             this.dispenseBtn = new System.Windows.Forms.Button();
+            this.viewBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -272,6 +273,19 @@ namespace Milestone1
             this.dispenseBtn.UseVisualStyleBackColor = false;
             this.dispenseBtn.Click += new System.EventHandler(this.dispenseBtn_Click);
             // 
+            // viewBtn
+            // 
+            this.viewBtn.BackColor = System.Drawing.Color.Aqua;
+            this.viewBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewBtn.ForeColor = System.Drawing.Color.Black;
+            this.viewBtn.Location = new System.Drawing.Point(546, 92);
+            this.viewBtn.Name = "viewBtn";
+            this.viewBtn.Size = new System.Drawing.Size(75, 23);
+            this.viewBtn.TabIndex = 48;
+            this.viewBtn.Text = "View Item";
+            this.viewBtn.UseVisualStyleBackColor = false;
+            this.viewBtn.Click += new System.EventHandler(this.viewBtn_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.submitBtn;
@@ -281,6 +295,7 @@ namespace Milestone1
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.resetBtn;
             this.ClientSize = new System.Drawing.Size(634, 541);
+            this.Controls.Add(this.viewBtn);
             this.Controls.Add(this.dispenseBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.removeBtn);
@@ -333,6 +348,7 @@ namespace Milestone1
         private System.Windows.Forms.Button removeBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button dispenseBtn;
+        private System.Windows.Forms.Button viewBtn;
     }
 }
 
