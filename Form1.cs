@@ -13,6 +13,12 @@ namespace Milestone1
         // Create a list of inventory items.
         List<InventoryItem> myList = new List<InventoryItem>();
 
+        public static string SetValueForID = "";
+        public static string SetValueForMedication = "";
+        public static string SetValueForDeliveryForm = "";
+        public static string SetValueForQuantity = "";
+        public static string SetValueForUnitPrice = "";
+
         public Form1()
         {
             InitializeComponent();
@@ -349,6 +355,25 @@ namespace Milestone1
 
             // Sort inventoryListBox by Id.
             inventoryListBox.Sorted = true;
+        }
+
+        private void viewBtn_Click(object sender, EventArgs e)
+        {
+            
+                // Declared variable and value.
+                int index = inventoryListBox.SelectedIndex;
+
+                // Assigns each element value to respective control.
+                SetValueForID = idTextBox.Text.ToString();
+                SetValueForMedication = medicationTextBox.Text;
+                SetValueForDeliveryForm = formTextBox.Text;
+                SetValueForQuantity = quantityTextBox.Text.ToString();
+                SetValueForUnitPrice = unitPriceTextBox.Text.ToString();
+
+                Form2 form2 = new Form2();
+
+                form2.Show();
+            
         }
     }
 }
