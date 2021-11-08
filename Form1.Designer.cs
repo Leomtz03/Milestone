@@ -49,6 +49,7 @@ namespace Milestone1
             this.updateBtn = new System.Windows.Forms.Button();
             this.removeBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
+            this.dispenseBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,24 +78,29 @@ namespace Milestone1
             // submitBtn
             // 
             this.submitBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.submitBtn.BackColor = System.Drawing.Color.Green;
+            this.submitBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitBtn.ForeColor = System.Drawing.Color.White;
             this.submitBtn.Location = new System.Drawing.Point(390, 178);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(75, 23);
             this.submitBtn.TabIndex = 1;
             this.submitBtn.Text = "Submit";
-            this.submitBtn.UseVisualStyleBackColor = true;
+            this.submitBtn.UseVisualStyleBackColor = false;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // resetBtn
             // 
             this.resetBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.resetBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.resetBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.resetBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetBtn.Location = new System.Drawing.Point(309, 178);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(75, 23);
             this.resetBtn.TabIndex = 18;
             this.resetBtn.Text = "Reset";
-            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.UseVisualStyleBackColor = false;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
             // unitPriceLbl
@@ -216,34 +222,55 @@ namespace Milestone1
             // updateBtn
             // 
             this.updateBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.updateBtn.BackColor = System.Drawing.Color.Blue;
+            this.updateBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateBtn.ForeColor = System.Drawing.Color.White;
             this.updateBtn.Location = new System.Drawing.Point(228, 178);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 23);
             this.updateBtn.TabIndex = 41;
             this.updateBtn.Text = "Update";
-            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.UseVisualStyleBackColor = false;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // removeBtn
             // 
             this.removeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.removeBtn.BackColor = System.Drawing.Color.Maroon;
+            this.removeBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeBtn.ForeColor = System.Drawing.Color.White;
             this.removeBtn.Location = new System.Drawing.Point(147, 178);
             this.removeBtn.Name = "removeBtn";
             this.removeBtn.Size = new System.Drawing.Size(75, 23);
             this.removeBtn.TabIndex = 43;
             this.removeBtn.Text = "Remove";
-            this.removeBtn.UseVisualStyleBackColor = true;
+            this.removeBtn.UseVisualStyleBackColor = false;
             this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
             // searchBtn
             // 
+            this.searchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.searchBtn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.Location = new System.Drawing.Point(66, 178);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(75, 23);
             this.searchBtn.TabIndex = 46;
             this.searchBtn.Text = "Search";
-            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // dispenseBtn
+            // 
+            this.dispenseBtn.BackColor = System.Drawing.Color.Red;
+            this.dispenseBtn.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dispenseBtn.ForeColor = System.Drawing.Color.White;
+            this.dispenseBtn.Location = new System.Drawing.Point(228, 459);
+            this.dispenseBtn.Name = "dispenseBtn";
+            this.dispenseBtn.Size = new System.Drawing.Size(156, 55);
+            this.dispenseBtn.TabIndex = 47;
+            this.dispenseBtn.Text = "Dispense";
+            this.dispenseBtn.UseVisualStyleBackColor = false;
+            this.dispenseBtn.Click += new System.EventHandler(this.dispenseBtn_Click);
             // 
             // Form1
             // 
@@ -254,6 +281,7 @@ namespace Milestone1
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.resetBtn;
             this.ClientSize = new System.Drawing.Size(634, 541);
+            this.Controls.Add(this.dispenseBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.updateBtn);
@@ -304,6 +332,7 @@ namespace Milestone1
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button removeBtn;
         private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button dispenseBtn;
     }
 }
 
