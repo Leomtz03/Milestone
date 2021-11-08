@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Milestone1
 {
     class InventoryItem
     {
- 
+        // Constructor
         public InventoryItem()
         {
             // Reference the property. Similar to Java.
