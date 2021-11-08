@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,21 +10,76 @@ namespace Milestone1
         // Create binding source.
         BindingSource bs = new BindingSource();
 
-        // Declare Variables
-        const int ROWS = 1000;
-        int nextItem = 0; // Variable meant to assign the next number to next item.
-
-        // Create Array of InventoryItem. In other words, using the properties for InventoryItem class.
-        InventoryItem[] myArrayList = new InventoryItem[ROWS];
+        // Create a list of inventory items.
+        List<InventoryItem> myList = new List<InventoryItem>();
 
         public Form1()
         {
             InitializeComponent();
-            // Bind myArrayList to bs.
-            bs.DataSource = myArrayList; 
+            // Bind myList to bs.
+            bs.DataSource = myList;
         }
 
-        // We call GetInput method with InventoryItem object named lineItem.
+        private void submitBtn_Click(object sender, EventArgs e)
+        {
+            // Call the method.
+            FormatInput();
+
+            // Call the method to reset input.
+            Reset();
+        }
+
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            // Call method.
+            Reset();
+        }
+
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            // Call method.
+            UpdateItem();
+        }
+
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            // Call method.
+            RemoveItem();
+        }
+
+        private void inventoryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Declared variable and value.
+                int index = inventoryListBox.SelectedIndex;
+
+                // Assigns each element value to respective control.
+                idTextBox.Text = myList[index].InventoryId.ToString();
+                medicationTextBox.Text = myList[index].Medication;
+                formTextBox.Text = myList[index].DeliveryForm;
+                quantityTextBox.Text = myList[index].Quantity.ToString();
+                unitPriceTextBox.Text = myList[index].UnitPrice.ToString();
+
+            }
+            catch
+            {
+                // Meant to catch the error, but continue executing.
+            }
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            // Call method.
+            Search();
+        }
+
+        private void dispenseBtn_Click(object sender, EventArgs e)
+        {
+            // Call method.
+            Dispense();
+        }
+
         private InventoryItem GetInput(bool isSearch = false)
         {
             // Create instance of InventoryItem class.
@@ -103,9 +159,8 @@ namespace Milestone1
             // If control has no input, it does not add item to ListBox.
             if (input == null) return;
 
-            // Add input to myArrayList with current nextItem number. Then add one to nextItem.
-            myArrayList[nextItem] = input;
-            nextItem++;
+            // Add input to myList.
+            myList.Add(input);
 
             // Add entire input to list box.
             inventoryListBox.Items.Add(input);
@@ -117,21 +172,7 @@ namespace Milestone1
             idTextBox.Focus();
         }
 
-        private void submitBtn_Click(object sender, EventArgs e)
-        {
-            // Call the method.
-            FormatInput();
-
-            // Call the method to reset input.
-            reset();
-        }
-
-        private void resetBtn_Click(object sender, EventArgs e)
-        {
-            reset();
-        }
-
-        private void reset()
+        public void Reset()
         {
             // Reset each control.
             idTextBox.Text = "";
@@ -144,7 +185,7 @@ namespace Milestone1
             idTextBox.Focus();
         }
 
-        private void updateBtn_Click(object sender, EventArgs e)
+        public void UpdateItem()
         {
             // Get and assign user input to variable.
             var input = GetInput();
@@ -155,101 +196,24 @@ namespace Milestone1
             // Selected item is assigned to index variable.
             int index = inventoryListBox.SelectedIndex;
 
-            // Index is then assigned to oldItem
-            var oldItem = myArrayList[index];
-            
-            // Input replaces oldItem at index.
-            myArrayList[index] = input;
+            // Selected item is assigned to oldIndex.
+            var oldIndex = myList[index];
 
-            // oldItem is removed.
-            inventoryListBox.Items.Remove(oldItem);
+            // New input is assigned to current index on myList.
+            myList[index] = input;
+
+            // Replace item on list at index.
+            myList.Remove(oldIndex);
+            myList.Add(myList[index]);
 
             // Add item to inventoryListBox.
             inventoryListBox.Items.Add(input);
-        }
 
-        private void removeBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Declare variable and value.
-                int index = inventoryListBox.SelectedIndex;
+            // Remove selected item from inventoryListBox.
+            inventoryListBox.Items.Remove(oldIndex);
 
-                // myArrayList is converted to list in order to remove selected item.
-                var list = myArrayList.ToList();
-
-                // index is removed from list.
-                list.Remove(myArrayList[index]);
-
-                // list is converted back to myArrayList.
-                myArrayList = list.ToArray();
-
-                // index is removed from inventoryListBox.
-                inventoryListBox.Items.RemoveAt(index);
-
-                // Because the index was deleted from list, I must deduct one from the array.
-                nextItem--;
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void inventoryListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                // Declared variable and value.
-                int index = inventoryListBox.SelectedIndex;
-
-                // Assigns each element value to respective control.
-                idTextBox.Text = myArrayList[index].InventoryId.ToString();
-                medicationTextBox.Text = myArrayList[index].Medication;
-                formTextBox.Text = myArrayList[index].DeliveryForm;
-                quantityTextBox.Text = myArrayList[index].Quantity.ToString();
-                unitPriceTextBox.Text = myArrayList[index].UnitPrice.ToString();
-
-            }
-            catch
-            {
-                // Meant to catch the error, but continue executing.
-            }
-        }
-
-        public void Search()
-        {
-            // Receives input if passed boolean argument returns true and assigns to variable.
-            var input = GetInput(true);
-
-            // Declare variable and initialized.
-            var index = 0;
-            
-            // Clears any selected item.
-            inventoryListBox.ClearSelected();
-
-            // Foreach loop checks every item in myArrayList.
-            foreach (var item in myArrayList)
-            {
-                // Since myArrayList accepts 1000 elements, most will be null. Therefore,
-                // if statement checks only those elements that have a value.
-                if (item != null)
-                {
-                    // If statement uses IsMatch method to find the input within the item properties.
-                    if (IsMatch(item, input))
-                    {
-                        // If input is found, entire item is selected or highlighted.
-                        inventoryListBox.SelectedItems.Add(inventoryListBox.Items[index]);
-                    }
-                    else
-                    {
-                        // Otherwise it removes the selected or highlight from item.
-                        inventoryListBox.SelectedItems.Remove(inventoryListBox.Items[index]);
-                    }
-                    // Counter is added.
-                    index++;
-                }
-            }
+            // Sort items on inventoryListBox.
+            inventoryListBox.Sorted = true;
         }
 
         // Method is to determine if input matches item any property from InventoryItem.
@@ -267,10 +231,124 @@ namespace Milestone1
                    item.Quantity == input.Quantity;
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        public void RemoveItem()
         {
-            // Call method.
-            Search();
+            try
+            {
+                // Declare variable and value.
+                int index = inventoryListBox.SelectedIndex;
+
+                // Get and assign user input to variable.
+                var input = GetInput();
+
+                // If any input returns null, it will not 
+                if (input == null) return;
+
+                // Assign selected index to oldItem.
+                var oldItem = myList[index];
+
+                // Assign input to myList[index].
+                myList[index] = input;
+
+                // Remove index from myList.
+                myList.Remove(myList[index]);
+
+                // Remove oldItem from inventoryListBox.
+                inventoryListBox.Items.Remove(oldItem);
+
+                // Display number of entries.
+                countLbl.Text = inventoryListBox.Items.Count.ToString() + " entries.";
+
+                // Resets all input boxes.
+                Reset();
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void Search()
+        {
+            // Receives input if passed boolean argument returns true and assigns to variable.
+            var input = GetInput(true);
+
+            // Declare variable and initialized.
+            var index = 0;
+
+            // Clears any selected item.
+            inventoryListBox.ClearSelected();
+
+            try
+            {
+                // Foreach loop checks every item in myList.
+                foreach (var item in myList)
+                {
+                    // Since myArrayList accepts 1000 elements, most will be null. Therefore,
+                    // if statement checks only those elements that have a value.
+                    if (item != null)
+                    {
+                        // If statement uses IsMatch method to find the input within the item properties.
+                        if (IsMatch(item, input))
+                        {
+                            // If input is found, entire item is selected or highlighted.
+                            inventoryListBox.SelectedItems.Add(inventoryListBox.Items[index]);
+                        }
+                        else
+                        {
+                            // Otherwise it removes the selected or highlight from item.
+                            inventoryListBox.SelectedItems.Remove(inventoryListBox.Items[index]);
+                        }
+                        // Counter is added.
+                        index++;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void Dispense()
+        {
+            // Get and assign user input to variable.
+            var input = GetInput();
+
+            // If any input returns null, it will not 
+            if (input == null) return;
+
+            // Assign number value to dispense for specific item.
+            var dispenseQuantity = input.Quantity;
+
+            // Selected item is assigned to index variable.
+            int index = inventoryListBox.SelectedIndex;
+            //var oldIndex = index;
+            var oldIndex = myList[index];
+
+            // Subtract the selected item quantity with the new dispense quantity.
+            var newCount = myList[index].Quantity - dispenseQuantity;
+
+            // Assign new count to input quantity property.
+            input.Quantity = newCount;
+
+            // Assign input to index on myList.
+            myList[index] = input;
+
+            // Add new index to myList.
+            myList.Add(myList[index]);
+
+            // Remove oldIndex from myList.
+            myList.Remove(oldIndex);
+
+            // Add item to inventoryListBox.
+            inventoryListBox.Items.Add(input);
+
+            // Remove selected item from inventoryListBox.
+            inventoryListBox.Items.Remove(oldIndex);
+
+            // Sort inventoryListBox by Id.
+            inventoryListBox.Sorted = true;
         }
     }
 }
